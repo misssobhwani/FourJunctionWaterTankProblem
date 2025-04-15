@@ -1,0 +1,50 @@
+/* table {
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+td {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+td.yellowFilled {
+  background-color: gold;
+} */
+/* table {
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+td {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #aaa;
+  background-color: #eee;
+  transition: background-color 0.3s;
+}
+
+td.filled {
+  background-color: yellow;
+} */
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+td {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+.block {
+  background-color: gold; /* yellow block */
+}
+.water {
+  background-color: skyblue; /* blue water */
+}
+
+
+
