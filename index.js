@@ -1,64 +1,41 @@
 
-// This code creates a grid based on the input array and colors the cells based on the height of blocks and water levels.
-const input = [0, 4, 0, 0, 0,6,0,6,4,0];
-const rows = Math.max(...input);
-const cols = input.length;
 
-const table = document.getElementById("grid");
+function bestBuildingCombination(n) {
 
-let waterCellCount = 0; // Counter for blue (water) cells
+  const theatreTime = 5, pubTime = 4, commercialParkTime = 10;
+  const theatreEarnings = 1500, pubEarnings = 1000, commercialParkEarnings = 3000;
 
-// Create an empty grid
-for (let r = 0; r < rows; r++) {
-  const tr = document.createElement("tr");
 
-  for (let c = 0; c < cols; c++) {
-    const td = document.createElement("td");
+  let bestEarnings = 0;
+  let bestCombination = { T: 0, P: 0, C: 0 };
 
-    const blockHeight = input[c];
-    const rowFromBottom = rows - r;
 
-    if (blockHeight > 0) {
-      // It's a block: paint yellow
-      if (rowFromBottom <= blockHeight) {
-        td.className = "block";
-      }
-    } else {
-      // It's 0: Check for water between blocks
-      let leftBlock = 0;
-      let rightBlock = 0;
+  let cCount = Math.floor(n / commercialParkTime);
+  let remainingTimeAfterC = n - cCount * commercialParkTime;
 
-      // Look left
-      for (let i = c - 1; i >= 0; i--) {
-        if (input[i] > 0) {
-          leftBlock = input[i];
-          break;
-        }
-      }
+ 
+  let tCount = Math.floor(remainingTimeAfterC / theatreTime);
+  let remainingTimeAfterT = remainingTimeAfterC - tCount * theatreTime;
 
-      // Look right
-      for (let i = c + 1; i < cols; i++) {
-        if (input[i] > 0) {
-          rightBlock = input[i];
-          break;
-        }
-      }
 
-      // Fill water if there are blocks on both sides
-      const waterLevel = Math.min(leftBlock, rightBlock);
-      if (rowFromBottom <= waterLevel && waterLevel > 0) {
-        td.className = "water";
-        waterCellCount++; // Count this water cell
-      }
-    }
+  let pCount = Math.floor(remainingTimeAfterT / pubTime);
 
-    tr.appendChild(td);
+
+  let totalEarnings = cCount * commercialParkEarnings + tCount * theatreEarnings + pCount * pubEarnings;
+
+
+  if (totalEarnings > bestEarnings) {
+      bestEarnings = totalEarnings;
+      bestCombination = { T: tCount, P: pCount, C: cCount };
   }
 
-  table.appendChild(tr);
+  console.log(`Time Unit: ${n}`);
+  console.log(`Earnings: $${bestEarnings}`);
+  console.log(`Solutions:`);
+  console.log(`T: ${bestCombination.T} P: ${bestCombination.P} C: ${bestCombination.C}`);
 }
 
-// Show the total number of blue cells
-const waterInfo = document.createElement("p");
-waterInfo.textContent = `Total water (blue) cells: ${waterCellCount}`;
-document.body.appendChild(waterInfo);
+
+bestBuildingCombination(7);  // example input
+bestBuildingCombination(8);  // another example input
+bestBuildingCombination(13); // another anothrt for time unit 13
