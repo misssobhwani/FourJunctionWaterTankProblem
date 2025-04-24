@@ -8,3 +8,5 @@ click Visualize
 Visualizes blocks in yellow
 - Fills water trapped between blocks in blue
 - Displays total water cells (blue blocks)
+
+- ignore.vs code file
